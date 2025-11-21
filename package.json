@@ -1,0 +1,60 @@
+{
+	"name": "enact",
+	"version": "1.0.0",
+	"description": "A general template for an Enact Typescript application.",
+	"author": "",
+	"main": "src/index.tsx",
+	"scripts": {
+		"serve": "enact serve",
+		"pack": "enact pack",
+		"pack-p": "enact pack -p",
+		"watch": "enact pack --watch",
+		"clean": "enact clean",
+		"lint": "enact lint .",
+		"license": "enact license",
+		"test": "enact test",
+		"test-watch": "enact test --watch"
+	},
+	"license": "UNLICENSED",
+	"private": true,
+	"repository": "",
+	"enact": {
+		"title": "Video Player Custom Pattern",
+		"isomorphic": true,
+		"ri": {
+			"baseSize": 48
+		}
+	},
+	"eslintConfig": {
+		"extends": "enact-proxy"
+	},
+	"eslintIgnore": [
+		"node_modules/*",
+		"build/*",
+		"dist/*"
+	],
+	"dependencies": {
+		"@enact/core": "^4.8.0",
+		"@enact/i18n": "^4.8.0",
+		"@enact/sandstone": "^2.8.0",
+		"@enact/spotlight": "^4.8.0",
+		"@enact/ui": "^4.8.0",
+		"@types/node": "^20.11.5",
+		"@types/react": "^18.2.48",
+		"@types/react-dom": "^18.2.18",
+		"cors": "^2.8.5",
+		"express": "^5.1.0",
+		"flv.js": "^1.6.2",
+		"hls.js": "^1.6.13",
+		"ilib": "^14.19.0",
+		"node-fetch": "^2.7.0",
+		"prop-types": "^15.8.1",
+		"react": "^18.2.0",
+		"react-dom": "^18.2.0",
+		"typescript": "^5.3.3",
+		"web-vitals": "^3.5.1"
+	},
+	"devDependencies": {
+		"eslint-config-enact-proxy": "^1.0.7"
+	}
+}

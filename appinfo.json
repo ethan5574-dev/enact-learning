@@ -1,0 +1,13 @@
+{
+  "id": "com.yourdomain.webosapp",
+  "title": "WebOSApp",
+  "version": "0.0.1",
+  "type": "web",
+  "main": "index.html",
+  "icon": "",
+  "requiredPermissions": [
+    "public"
+  ],
+  "vendor": "Your Company",
+  "appDescription": "Sample Enact app for webOS TV Simulator."
+}

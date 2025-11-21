@@ -1,0 +1,25 @@
+.videoSelectionPanel {
+    background: rgba(128, 128, 128, 0.7) !important;
+    /* Xám mờ với độ trong suốt 70% */
+    backdrop-filter: blur(10px);
+    /* Hiệu ứng blur cho background phía sau */
+    -webkit-backdrop-filter: blur(10px);
+    /* Safari support */
+    height: fit-content;
+    border-radius: 50px;
+}
+
+.videoSelectionPanel :global(.enact-panels-Panel) {
+    background: transparent !important;
+}
+
+/* Style cho header */
+.videoSelectionPanel :global(.Header) {
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(5px);
+}
+
+/* Style cho scroller content */
+.videoSelectionPanel :global(.Scroller) {
+    background: transparent;
+}
