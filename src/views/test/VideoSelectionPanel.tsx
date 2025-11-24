@@ -6,7 +6,7 @@ import RadioItem from '@enact/sandstone/RadioItem';
 import Scroller from '@enact/sandstone/Scroller';
 import Group from '@enact/ui/Group';
 
-import videos from '../App/videos';
+import videos from '../../data/videos';
 
 import css from './VideoSelectionPanel.module.less';
 

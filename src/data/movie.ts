@@ -965,7 +965,6 @@ const channels = [
         },
         "enable_detail": true
     },
-    {},
     {
         "id": "luyen-khi-muoi-van-nam",
         "name": "Luyện Khí Mười Vạn Năm",
@@ -1081,4 +1080,4 @@ const channels = [
         },
         "enable_detail": true
     }
-];  
+]; export default channels;

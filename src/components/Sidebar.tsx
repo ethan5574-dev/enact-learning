@@ -5,8 +5,8 @@ import Scroller from '@enact/sandstone/Scroller';
 import css from './Sidebar.module.less';
 
 interface SidebarProps {
-	activePanel?: string;
-	onSelectPanel?: (panel: string) => void;
+	activePanelIndex?: number;
+	onSelectPanel?: (index: number) => void;
 }
 
 const Sidebar = kind<SidebarProps>({
@@ -17,24 +17,24 @@ const Sidebar = kind<SidebarProps>({
 		className: 'sidebar'
 	},
 
-	render: ({ activePanel = 'main', onSelectPanel, ...props }) => (
+	render: ({ activePanelIndex = 0, onSelectPanel, ...props }) => (
 		<Scroller {...props}>
 			<div className={css.sidebarTitle}>Navigation</div>
 			<Item
-				label="Go to Main View"
-				onClick={() => onSelectPanel && onSelectPanel('main')}
-				selected={activePanel === 'main'}
-				slotBefore={<Icon>home</Icon>}
+				label="Movie List"
+				onClick={() => onSelectPanel && onSelectPanel(0)}
+				selected={activePanelIndex === 0}
+				slotBefore={<Icon>popcorn</Icon>}
 			>
-				Main
+				Movie
 			</Item>
 			<Item
-				label="View Details"
-				onClick={() => onSelectPanel && onSelectPanel('details')}
-				selected={activePanel === 'details'}
-				slotBefore={<Icon>info</Icon>}
+				label="Test Video Player"
+				onClick={() => onSelectPanel && onSelectPanel(1)}
+				selected={activePanelIndex === 1}
+				slotBefore={<Icon>play</Icon>}
 			>
-				Details
+				Test
 			</Item>
 		</Scroller>
 	)
