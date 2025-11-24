@@ -13,7 +13,7 @@ const videos = [
 	{
 		title: 'm3u8 Video Source (via Proxy)',
 		// Proxy server will add Origin, Referer, User-Agent headers
-		source: 'http://localhost:3001/dvkQ9V50U9PtbcI26Ec90g/Fv2lucGIbhPi2caWYvF5Lg/1763737346507/live/heHD/playlist.m3u8',
+		source: 'http://localhost:3001/kgBlGCHKf7cfc9RxHCmE-Q/Fv2lucGIbhPi2caWYvF5Lg/1763976950868/live/sd-6MvYM5oPQJVk9UBriX/playlist.m3u8',
 		subtitles: [],
 		type: 'application/x-mpegURL',
 		desc: 'HLS stream via CORS proxy server.'

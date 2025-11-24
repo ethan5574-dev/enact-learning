@@ -3,11 +3,13 @@ import { MediaControls } from '@enact/sandstone/MediaPlayer';
 import { Panels } from '@enact/sandstone/Panels';
 import ThemeDecorator from '@enact/sandstone/ThemeDecorator';
 import VideoPlayer from '@enact/sandstone/VideoPlayer';
+import { Cell, Layout } from '@enact/ui/Layout';
 import Hls from 'hls.js';
 import flvjs from 'flv.js';
 import PropTypes from 'prop-types';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
+import Sidebar from '../components/Sidebar';
 import VideoSelectionPanel from '../views/VideoSelectionPanel';
 
 import videos from './videos';
@@ -27,6 +29,13 @@ const AppBase = ({ className = '', videoId = 0, ...rest }: AppBaseProps) => {
 	const hlsRef = useRef<Hls | null>(null);
 	const flvPlayerRef = useRef<any>(null); // flv.js player instance
 	const videoRef = useRef<any>(null); // VideoPlayer ref type from Enact
+
+	const [activePanel, setActivePanel] = useState<string>('main');
+
+	const handleNavigate = useCallback((panel: string) => {
+		setActivePanel(panel);
+		// Logic to handle navigation if needed, e.g. routing or just state change
+	}, []);
 
 	const getHls = (): Hls => {
 		if (hlsRef.current === null) {
@@ -123,24 +132,41 @@ const AppBase = ({ className = '', videoId = 0, ...rest }: AppBaseProps) => {
 
 	return (
 		<div {...rest} className={className + ' ' + css.app}>
-			<VideoPlayer
-				{...restVideo}
-				className={css.player + ' enact-fit'}
-				ref={videoRef}
-				infoComponents={desc}
-				spotlightDisabled={videoPanelsVisible}
-			>
-				<source src={source} type={type} />
-				<MediaControls id="mediaControls" actionGuideLabel="Press Down Button">
-					<Button
-						icon="list"
-						backgroundOpacity="transparent"
-						onClick={handleShowVideoPanelsClick}
-						spotlightDisabled={videoPanelsVisible}
-					/>
-				</MediaControls>
-			</VideoPlayer>
-			{content}
+			<Layout orientation="horizontal" className={css.layout}>
+				{(
+					<Cell shrink>
+						<Sidebar activePanel={activePanel} onSelectPanel={handleNavigate} />
+					</Cell>
+				) as any}
+				{(
+					<Cell className={css.content}>
+						{activePanel === 'main' ? (
+							<>
+								<VideoPlayer
+									{...restVideo}
+									className={css.player + ' enact-fit'}
+									ref={videoRef}
+									infoComponents={desc}
+									spotlightDisabled={videoPanelsVisible}
+								>
+									<source src={source} type={type} />
+									<MediaControls id="mediaControls" actionGuideLabel="Press Down Button">
+										<Button
+											icon="list"
+											backgroundOpacity="transparent"
+											onClick={handleShowVideoPanelsClick}
+											spotlightDisabled={videoPanelsVisible}
+										/>
+									</MediaControls>
+								</VideoPlayer>
+								{content}
+							</>
+						) : (
+							<div className={css.detailsPlaceholder}>Details View Placeholder</div>
+						)}
+					</Cell>
+				) as any}
+			</Layout>
 		</div>
 	);
 };

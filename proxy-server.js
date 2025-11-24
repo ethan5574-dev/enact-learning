@@ -9,7 +9,7 @@ const app = express();
 const PORT = 3001;
 
 // Base URL for the stream server
-const STREAM_BASE_URL = 'https://hotlivezz179266008.akainu.xyz';
+const STREAM_BASE_URL = 'https://apisportzz179528093.nsnd.live';
 
 // Enable CORS for all origins
 app.use(cors());

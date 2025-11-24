@@ -1,6 +1,7 @@
 import kind from '@enact/core/kind';
-import Button from '@enact/sandstone/Button';
-
+import Icon from '@enact/sandstone/Icon';
+import Item from '@enact/sandstone/Item';
+import Scroller from '@enact/sandstone/Scroller';
 import css from './Sidebar.module.less';
 
 interface SidebarProps {
@@ -11,24 +12,31 @@ interface SidebarProps {
 const Sidebar = kind<SidebarProps>({
 	name: 'Sidebar',
 
-	render: ({activePanel = 'main', onSelectPanel, ...props}) => (
-		<div className={css.sidebar} {...props}>
+	styles: {
+		css,
+		className: 'sidebar'
+	},
+
+	render: ({ activePanel = 'main', onSelectPanel, ...props }) => (
+		<Scroller {...props}>
 			<div className={css.sidebarTitle}>Navigation</div>
-			<Button
-			
+			<Item
+				label="Go to Main View"
 				onClick={() => onSelectPanel && onSelectPanel('main')}
-				className={activePanel === 'main' ? css.active : ''}
+				selected={activePanel === 'main'}
+				slotBefore={<Icon>home</Icon>}
 			>
 				Main
-			</Button>
-			<Button
-				
+			</Item>
+			<Item
+				label="View Details"
 				onClick={() => onSelectPanel && onSelectPanel('details')}
-				className={activePanel === 'details' ? css.active : ''}
+				selected={activePanel === 'details'}
+				slotBefore={<Icon>info</Icon>}
 			>
 				Details
-			</Button>
-		</div>
+			</Item>
+		</Scroller>
 	)
 });
 
