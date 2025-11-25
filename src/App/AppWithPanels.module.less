@@ -1,0 +1,223 @@
+.app {
+    height: 100vh;
+    width: 100vw;
+    background-color: #000;
+    overflow: hidden;
+}
+
+.layout {
+    height: 100%;
+    width: 100%;
+}
+
+.content {
+    flex: 1;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.playerContainer {
+    width: 100%;
+    height: 100%;
+}
+
+.player {
+    width: 100%;
+    height: 100%;
+}
+
+// Main Menu Styles
+.mainMenu {
+    padding: 2rem;
+}
+
+.categoryGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.categoryCard {
+    border-radius: 1rem;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+
+    &:focus-within {
+        transform: scale(1.05);
+    }
+}
+
+.categoryButton {
+    width: 100%;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: transparent !important;
+    border: none !important;
+}
+
+.categoryIcon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+}
+
+.categoryTitle {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+// Movie Detail Styles
+.movieDetail {
+    padding: 2rem;
+}
+
+.movieHero {
+    margin-bottom: 2rem;
+
+    h1 {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+    }
+}
+
+.movieMeta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.badge {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+}
+
+.movieContent {
+    max-width: 1200px;
+}
+
+.section {
+    margin-bottom: 2rem;
+
+    h3 {
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+    }
+
+    p {
+        font-size: 1.2rem;
+        line-height: 1.6;
+        color: #ccc;
+    }
+}
+
+.detailGrid {
+    display: grid;
+    gap: 1rem;
+    font-size: 1.2rem;
+
+    strong {
+        color: #aaa;
+    }
+}
+
+.actionBar {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+// Panel Content
+.panelContent {
+    padding: 2rem;
+}
+
+// Review Styles
+.reviewCard {
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.reviewHeader {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+
+    strong {
+        font-size: 1.2rem;
+    }
+
+    span {
+        color: #f39c12;
+    }
+}
+
+// Empty State
+.emptyState {
+    text-align: center;
+    padding: 4rem 2rem;
+
+    h3 {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+    }
+
+    p {
+        font-size: 1.2rem;
+        color: #aaa;
+        margin-bottom: 2rem;
+    }
+}
+
+// Search Container
+.searchContainer {
+    text-align: center;
+    padding: 4rem 2rem;
+
+    h3 {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+    }
+
+    p {
+        font-size: 1.2rem;
+        color: #aaa;
+        margin-bottom: 2rem;
+    }
+}
+
+// Menu Icon
+.menuIcon {
+    font-size: 2rem;
+    margin-right: 1rem;
+}
+
+// Account Info
+.accountInfo {
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 2rem;
+    border-radius: 1rem;
+    margin-bottom: 2rem;
+
+    h3 {
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+    }
+
+    p {
+        font-size: 1.2rem;
+        margin-bottom: 1rem;
+
+        strong {
+            color: #aaa;
+            margin-right: 1rem;
+        }
+    }
+}

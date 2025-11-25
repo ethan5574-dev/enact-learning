@@ -5,8 +5,10 @@ import Scroller from '@enact/sandstone/Scroller';
 import css from './Sidebar.module.less';
 
 interface SidebarProps {
-	activePanelIndex?: number;
-	onSelectPanel?: (index: number) => void;
+	activePath?: string;
+	onNavigate?: (args: { path: string }) => void;
+	onMoviePanel?: () => void;
+	onTestPanel?: () => void;
 }
 
 const Sidebar = kind<SidebarProps>({
@@ -17,21 +19,27 @@ const Sidebar = kind<SidebarProps>({
 		className: 'sidebar'
 	},
 
-	render: ({ activePanelIndex = 0, onSelectPanel, ...props }) => (
+	render: ({ activePath = '/movie', onMoviePanel, onTestPanel, ...props }) => (
 		<Scroller {...props}>
 			<div className={css.sidebarTitle}>Navigation</div>
 			<Item
 				label="Movie List"
-				onClick={() => onSelectPanel && onSelectPanel(0)}
-				selected={activePanelIndex === 0}
+				onClick={() => {
+					console.log('Sidebar: Clicked Movie List');
+					onMoviePanel && onMoviePanel();
+				}}
+				selected={activePath?.startsWith('/movie')}
 				slotBefore={<Icon>popcorn</Icon>}
 			>
 				Movie
 			</Item>
 			<Item
 				label="Test Video Player"
-				onClick={() => onSelectPanel && onSelectPanel(1)}
-				selected={activePanelIndex === 1}
+				onClick={() => {
+					console.log('Sidebar: Clicked Test Video Player');
+					onTestPanel && onTestPanel();
+				}}
+				selected={activePath?.startsWith('/test')}
 				slotBefore={<Icon>play</Icon>}
 			>
 				Test

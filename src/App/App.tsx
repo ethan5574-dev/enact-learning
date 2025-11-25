@@ -1,7 +1,10 @@
+import kind from '@enact/core/kind';
 import { Cell, Layout } from '@enact/ui/Layout';
+import { Panels } from '@enact/sandstone/Panels';
+import Routable, { Route } from '@enact/ui/Routable';
 import ThemeDecorator from '@enact/sandstone/ThemeDecorator';
 import PropTypes from 'prop-types';
-import { useCallback, useState } from 'react';
+import { Component } from 'react';
 
 import Sidebar from '../components/Sidebar';
 import MoviePanel from '../views/movie/MoviePanel';
@@ -9,52 +12,69 @@ import TestPanel from '../views/test/TestPanel';
 
 import css from './App.module.less';
 
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
+const queryClient = new QueryClient();
 
-interface AppBaseProps {
-	className?: string;
-	videoId?: number;
+// Create RoutablePanels by wrapping Panels with Routable HOC
+const RoutablePanels = Routable({ navigate: 'onBack' }, Panels);
+
+interface AppState {
+	path: string;
 }
 
-const AppBase = ({ className = '', ...rest }: AppBaseProps) => {
-	const [panelIndex, setPanelIndex] = useState<number>(0);
+class AppBase extends Component<any, AppState> {
+	constructor(props: any) {
+		super(props);
+		this.state = {
+			path: '/movie'
+		};
+	}
 
-	const handleNavigate = useCallback((index: number) => {
-		setPanelIndex(index);
-	}, []);
+	handleNavigate = ({ path }: { path: string }) => {
+		console.log('App: Navigating to', path);
+		this.setState({ path });
+	};
 
-	return (
-		<div {...rest} className={className + ' ' + css.app}>
-			<Layout orientation="horizontal" className={css.layout}>
-				{(
-					<Cell shrink>
-						<Sidebar activePanelIndex={panelIndex} onSelectPanel={handleNavigate} />
-					</Cell>
-				) as any}
-				{(
-					<Cell className={css.content}>
-						{panelIndex === 0 ? <MoviePanel /> : <TestPanel />}
-					</Cell>
-				) as any}
-			</Layout>
-		</div>
-	);
-};
+	handleMoviePanel = () => {
+		this.handleNavigate({ path: '/movie' });
+	};
 
-AppBase.propTypes = {
-	/**
-	 * Assign an alternate initial video to load first.
-	 *
-	 * @type {Number}
-	 * @default 0
-	 * @public
-	 */
-	videoId: PropTypes.number
-};
+	handleTestPanel = () => {
+		this.handleNavigate({ path: '/test' });
+	};
 
-AppBase.defaultProps = {
-	videoId: 0
-};
+	render() {
+		const { className = '', ...rest } = this.props;
+		const { path } = this.state;
+
+		return (
+			<QueryClientProvider client={queryClient}>
+				<div {...rest} className={className + ' ' + css.app}>
+					<Layout orientation="horizontal" className={css.layout}>
+						{(
+							<Cell shrink>
+								<Sidebar
+									activePath={path}
+									onMoviePanel={this.handleMoviePanel}
+									onTestPanel={this.handleTestPanel}
+								/>
+							</Cell>
+						) as any}
+						{(
+							<Cell className={css.content}>
+								<RoutablePanels noCloseButton onBack={this.handleNavigate} path={path}>
+									<Route path="movie" component={MoviePanel} />
+									<Route path="test" component={TestPanel} />
+								</RoutablePanels>
+							</Cell>
+						) as any}
+					</Layout>
+				</div>
+			</QueryClientProvider>
+		);
+	}
+}
 
 const App = ThemeDecorator(AppBase);
 
